@@ -42,8 +42,8 @@ public class MergeSort {
 
 		int indexArray1 = q - p + 1;
 		int indexArray2 = r - q;
-		int[] leftArray = new int[indexArray1];
-		int[] rightArray = new int[indexArray2];
+		int[] leftArray = new int[indexArray1+1];
+		int[] rightArray = new int[indexArray2+1];
 
 		for (int i = 0; i < indexArray1; i++) {
 			leftArray[i] = array[p + i];
@@ -51,12 +51,15 @@ public class MergeSort {
 		for (int j = 0; j < indexArray2; j++) {
 			rightArray[j] = array[q + j + 1];
 		}
+		
+		leftArray[indexArray1]=Integer.MAX_VALUE;
+		rightArray[indexArray2]=Integer.MAX_VALUE;
 
 		int i = 0;
 		int j = 0;
-		int k = p;
+		int k=0;
 		try {
-			while (i <indexArray1 && j <indexArray2) {
+			for(k=p;k<=r;k++) {
 				if (leftArray[i] <= rightArray[j]) {
 					array[k] = leftArray[i];
 					i++;
@@ -65,23 +68,9 @@ public class MergeSort {
 					j++;
 
 				}
-				k++;
+				
 			}
 			
-			if(i<indexArray1) {
-				for(int pi=i;pi<indexArray1;pi++) {
-					array[k]=leftArray[pi];
-					k++;
-				}
-			}
-			else if(j<indexArray2) {
-				for(int pj=j;pj<indexArray2;pj++) {
-					array[k]=rightArray[pj];
-					k++;
-				}
-			}
-			
-		
 		} catch (ArrayIndexOutOfBoundsException e) {
 			logger.log(Level.INFO, e.toString());
 		}
