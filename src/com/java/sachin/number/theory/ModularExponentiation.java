@@ -1,4 +1,4 @@
-package com.java.sachin.modular.arithmetic;
+package com.java.sachin.number.theory;
 
 public class ModularExponentiation {
 
