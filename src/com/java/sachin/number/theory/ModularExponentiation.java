@@ -72,6 +72,28 @@ public class ModularExponentiation {
 		return result;
 	}
 
+	public static int binaryRecursiveModularPower(int x, int n, int M) {
+		if (n == 0) {
+			return 1;
+		} else if (n % 2 == 0) {
+			return recursivePower((x * x) % M, n / 2);
+		} else {
+			return (x * recursivePower((x * x) % M, (n - 1) / 2)) % M;
+		}
+	}
+	
+	private static int binaryIterativeModularPower(int x, int n, int M) {
+		int result = 1;
+		while (n > 0) {
+			if (n % 2 == 1) {
+				result = (result * x)%M;
+			}
+			x = (x * x)%M;
+			n = n / 2;
+		}
+		return result;
+	}
+
 	private static void displayResult(int x, int n, int result, String exponentiationType) {
 		System.out.println(
 				String.format(" %s raise to power %s equals to %s using %s", x, n, result, exponentiationType));
